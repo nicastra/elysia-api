@@ -2,8 +2,9 @@
   "name": "tutorial-elysia",
   "version": "1.0.50",
   "scripts": {
-    "start": "bun build \t--compile \t--minify-whitespace \t--minify-syntax \t--target bun \t--outfile server \t./src/index.ts",
+    "build": "bun build ./src/index.ts --compile --minify-whitespace --minify-syntax --target bun --outfile server",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./server",
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
