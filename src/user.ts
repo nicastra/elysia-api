@@ -5,6 +5,7 @@ export const userService = new Elysia({ name: "user/service" })
     user: {} as Record<string, string>,
     session: {} as Record<number, string>,
   })
+
   .model({
     signIn: t.Object({
       username: t.String({ minLength: 1 }),
@@ -92,7 +93,6 @@ export const user = new Elysia({ prefix: "/user" })
         });
 
       const key = crypto.getRandomValues(new Uint32Array(1))[0];
-      console.log(key);
 
       session[key] = username;
       token.value = key;
@@ -100,7 +100,7 @@ export const user = new Elysia({ prefix: "/user" })
       return {
         success: true,
         message: `Signed in as ${username}`,
-        token: token,
+        token: token?.value,
       };
     },
 

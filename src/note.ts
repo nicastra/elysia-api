@@ -45,10 +45,18 @@ export const note = new Elysia({ prefix: "/note" })
   .use(getUserId)
   .put(
     "/",
-    ({ note, body: { data }, username }) =>
-      note.add({ data, author: username }),
+    ({ note, body: { data }, username }) => {
+      note.add({ data, author: username });
+
+      return { success: true, message: "Success to add note" };
+    },
+
     {
       body: "memo",
+      response: t.Object({
+        success: t.Boolean(),
+        message: t.String(),
+      }),
     }
   )
   .guard({
